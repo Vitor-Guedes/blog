@@ -1,0 +1,27 @@
+{
+    "name": "module/blog",
+    "type": "packages",
+    "description": "Gerenciamento de um blog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vitor Guedes",
+            "email": "vtrf2.0@email.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Modules\\Blog\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers":[
+                "Modules\\Blog\\Providers\\BlogServiceProvider"
+            ]
+        }
+    }
+}

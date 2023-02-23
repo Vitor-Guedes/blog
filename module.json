@@ -1,0 +1,14 @@
+{
+    "name": "blog",
+    "label": "Blog",
+    "alias": "Blog",
+    "description": "Modulo para gerenciamento de um blog",
+    "keywords": ["blog"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Blog\\Providers\\BlogServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
