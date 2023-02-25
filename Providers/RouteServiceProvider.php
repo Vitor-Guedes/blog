@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider
@@ -11,8 +12,16 @@ extends ServiceProvider
 
     public function map()
     {
+        $this->mapAdminRoutes();
         $this->mapApiRoutes();
         $this->mapWebRoutes();
+    }
+
+    public function mapAdminRoutes()
+    {
+        Route::prefix('admin')
+            ->namespace($this->moduleNamespace)
+            ->group(module_path('Blog', '/Routes/admin.php'));
     }
 
     public function mapWebRoutes()

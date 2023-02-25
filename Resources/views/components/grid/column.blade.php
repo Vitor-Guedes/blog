@@ -1,0 +1,1 @@
+<th class="py-1"> {{ $getColumnLabel() }} </th>

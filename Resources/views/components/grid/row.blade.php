@@ -1,0 +1,1 @@
+<td class="text-center text-sm"> {!! $getRowValue() !!} </td>
