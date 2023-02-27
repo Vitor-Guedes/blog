@@ -12,7 +12,8 @@ class Article extends Model
     protected $fillable = [
         'title',
         'content',
-        'active'
+        'active',
+        'url'
     ];
 
     protected $casts = [
@@ -29,6 +30,7 @@ class Article extends Model
         return [
             'id',
             'title',
+            'url',
             'is_active'
         ];
     }

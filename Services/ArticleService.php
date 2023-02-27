@@ -88,4 +88,23 @@ class ArticleService
             ]; 
         }
     }
+
+    public function getByUrl(string $url)
+    {
+        try {
+            $article = Article::where('url', $url)
+                ->where('active', true)
+                ->firstOrFail();
+
+            return [
+                'success' => true,
+                'article' => $article
+            ];
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
 }

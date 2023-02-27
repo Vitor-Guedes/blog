@@ -4,6 +4,7 @@ namespace Modules\Blog\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Blog\Entities\Article;
 use Modules\Blog\Services\ArticleService;
 
 class ArticleController 
@@ -74,5 +75,18 @@ extends Controller
         
         session()->flash( 'error', $result['message']);
         return redirect()->back()->withInput();
+    }
+
+    public function article(ArticleService $service, string $url)
+    {
+        $result = $service->getByUrl($url);
+
+        if ($result['success']) {
+            return view('blog::article.view', [
+                'article' => $result['article']
+            ]);
+        }
+
+        return view('blog::article.not_founded');
     }
 }

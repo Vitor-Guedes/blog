@@ -12,6 +12,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
 </head>
 <body>
+
     <div class="container">
 
         <div class="border">
@@ -24,7 +25,9 @@
 
     
     <script>
+        
         var buttonsList = '.btn-redirect, .btn-edit, .btn-delete';
+    
     </script>
     
     <script src="{{ asset('js/button.js') }}"></script>

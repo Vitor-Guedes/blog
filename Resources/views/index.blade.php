@@ -33,6 +33,7 @@
                         <tr>
                             <td>ID</td>
                             <td>Title</td>
+                            <td>Url</td>
                             <td>Active</td>
                             <td>Actions</td>
                         </tr>
@@ -57,7 +58,15 @@
                                         
                                         <td>
 
-                                            {{ $article->$column }}
+                                            @if ($column === 'url')
+
+                                                <a href="{{ route('view.article', $article->$column) }}"> {{ $article->$column }} </a>
+                                            
+                                            @else
+                                            
+                                                {{ $article->$column }}
+
+                                            @endif
 
                                         </td>
 

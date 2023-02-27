@@ -24,13 +24,25 @@
 
         <div class="mt-2 mx-auto row">
 
-            <div class="mb-3 row col-10">
+            <div class="mb-3 row col-5">
                 
                 <label for="title" class="col-sm-2 col-form-label">Title</label>
                 
                 <div class="col-sm-10">
                     
-                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title') ?? '' }}">
+
+                </div>
+
+            </div>
+
+            <div class="mb-3 row col-5">
+                
+                <label for="url" class="col-sm-2 col-form-label">Url</label>
+                
+                <div class="col-sm-10">
+                    
+                    <input type="text" class="form-control" id="url" name="url" value="{{ old('url') ?? '' }}">
 
                 </div>
 
@@ -56,7 +68,7 @@
 
                 <label for="content" class="form-label">Content</label>
                 
-                <textarea class="form-control" id="content" rows="3" name="content">{{ old('content') }}</textarea>
+                <textarea class="form-control" id="content" rows="3" name="content">{{ old('content') ?? '' }}</textarea>
 
             </div>
 

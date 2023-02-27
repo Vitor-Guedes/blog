@@ -16,7 +16,7 @@
 
                 <button id="redirect-to" data-action="{{ route('admin.index') }}" type="button" class="btn btn-primary btn-redirect">Back</button>
                 
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success">Update</button>
 
             </div>
 
@@ -28,7 +28,7 @@
 
             <div class="mt-2 mx-auto row">
 
-                <div class="mb-3 row col-10">
+                <div class="mb-3 row col-5">
                     
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
                     
@@ -40,15 +40,29 @@
 
                 </div>
 
+                <div class="mb-3 row col-5">
+                    
+                    <label for="url" class="col-sm-2 col-form-label">Url</label>
+                    
+                    <div class="col-sm-10">
+                        
+                        <input type="text" class="form-control" id="url" name="url" value="{{ $article->url ?? old('url') ?? '' }}">
+
+                    </div>
+
+                </div>
+
                 <div class="col-2">
                     
                     <div class="form-check">
 
-                        <input class="form-check-input" type="checkbox" id="active" name="active" {{ $article->active ? 'checked' : old('active') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" id="active" name="active" value="{{ $article->active ? 1 : old('active') ? 1 : 0 }}" {{ $article->active ? 'checked' : old('active') ? 'checked' : '' }}>
                         
                         <label class="form-check-label" for="active">Ative</label>
                     
                     </div>
+
+                    <input class="form-check-input" type="hidden" id="active" name="active" value="0" {{ $article->active ? 'disabled' : old('active') ? 'disabled' : '' }}>
                     
                 </div>
 
