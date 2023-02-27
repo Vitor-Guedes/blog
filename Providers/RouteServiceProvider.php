@@ -20,6 +20,7 @@ extends ServiceProvider
     public function mapAdminRoutes()
     {
         Route::prefix('admin')
+            ->middleware('admin')
             ->namespace($this->moduleNamespace)
             ->group(module_path('Blog', '/Routes/admin.php'));
     }

@@ -5,6 +5,7 @@ namespace Modules\Blog\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Blog\Services\ArticleService;
 
 class AdminController extends Controller
 {
@@ -12,9 +13,18 @@ class AdminController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(ArticleService $service)
     {
-        return view('blog::admin.index');
+        $params = [];
+        
+        $data = $service->all();
+        if (isset($data['success'])) {
+            $params = [
+                'collection' => $data['articles']
+            ];
+        }
+
+        return view('blog::index', $params);
     }
 
     /**
@@ -23,7 +33,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('blog::admin.create');
+        return view('blog::create');
     }
 
     /**

@@ -2,15 +2,7 @@
 
 namespace Modules\Blog\Providers;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Modules\Blog\View\Components\Button;
-use Modules\Blog\View\Components\Form;
-use Modules\Blog\View\Components\Form\Input;
-use Modules\Blog\View\Components\Grid;
-use Modules\Blog\View\Components\Grid\Row;
-use Modules\Blog\View\Components\Grid\Column;
-use Modules\Blog\View\Components\Grid\Button as GridButton;
 
 class BlogServiceProvider
 extends ServiceProvider
@@ -27,6 +19,8 @@ extends ServiceProvider
 
     public function boot()
     {
+        $this->registerMiddleware();
+
         $this->registerViews();
 
         $this->registerViewComponents();
@@ -35,6 +29,19 @@ extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+    }
+
+    public function registerMiddleware()
+    {
+        app()->make('router')->middlewareGroup('admin', [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ]);
     }
 
     public function registerViews()
@@ -63,13 +70,6 @@ extends ServiceProvider
 
     public function registerViewComponents()
     {
-        Blade::component('grid-table-column', Column::class);
-        Blade::component('grid-table-row', Row::class);
-        Blade::component('grid-button', GridButton::class);
-        Blade::component('button', Button::class);
-        Blade::component('blog-grid', Grid::class);
 
-        Blade::component('form', Form::class);
-        Blade::component('form-input', Input::class);
     }
 }
