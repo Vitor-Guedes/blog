@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Blog\Entities\Article;
 use Modules\Blog\Services\ArticleService;
+use Modules\Blog\Services\TagService;
 
 class ArticleController 
 extends Controller
@@ -88,5 +89,37 @@ extends Controller
         }
 
         return view('blog::article.not_founded');
+    }
+
+    public function catalog(ArticleService $articleService, TagService $tagService, Request $request)
+    {
+        $articles = $tags = [];
+
+        if ($params = $request->all()) {
+            $result = $tagService->getArticleIdsByTagCode($params['tag']);
+            if ($result['success']) {
+                $result = $articleService->getByIds($result['article_ids']->toArray());
+                if ($result['success']) {
+                    $articles = $result['articles'];
+                }
+            }
+
+        } else {
+            $result = $articleService->all();
+
+            if ($result['success']) {
+                $articles = $result['articles'];
+            }
+
+            $result = $tagService->getAllDistinct();
+            if ($result['success']) {
+                $tags = $result['tags'];
+            }
+        }
+
+        return view('blog::article.catalog', [
+            'articles' => $articles,
+            'tags' => $tags
+        ]);
     }
 }

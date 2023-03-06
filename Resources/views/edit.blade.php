@@ -80,6 +80,44 @@
 
             </div>
 
+            <hr class="divider">
+
+            <div class="row mx-auto">
+
+                <div class="mb-3">
+
+                    <div class="container mb-2" id="container-tags">
+
+                        @if ($tags = $article->tags)
+
+                            @foreach ($tags as $tag)
+
+                                <span class="badge bg-secondary mx-1"> 
+                                
+                                    {{ $tag->code }}
+                                    
+                                    <span role="button" id="{{ $tag->id }}" class="text-white remove_tag">x</span>
+                                
+                                </span>
+
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <label for="input_tag" class="form-label">Tags</label>
+
+                    <input type="hidden" name="tags" id="tags">
+
+                    <input type="hidden" name="remove_tags" id="remove_tags">
+
+                    <input type="text" class="form-control" id="input_tag" data-target="tags" data-container="container-tags">
+
+                </div>
+
+            </div>
+
         </form>
 
     @endif
@@ -87,5 +125,9 @@
 @endsection
 
 @section('js')
+    <script>
+        var inputTag = 'input_tag';
+        var removeTag = '.remove_tag';
+    </script>
     <script src="{{ asset('js/checkbox-input.js') }}"></script>
 @endsection

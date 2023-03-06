@@ -74,10 +74,31 @@
 
         </div>
 
+        <hr class="divider">
+
+        <div class="row mx-auto">
+
+            <div class="mb-3">
+
+                <div class="container mb-2" id="container-tags"></div>
+
+                <label for="input_tag" class="form-label">Tags</label>
+
+                <input type="hidden" name="tags" id="tags">
+
+                <input type="text" class="form-control" id="input_tag" data-target="tags" data-container="container-tags">
+
+            </div>
+
+        </div>
+
     </form>
 
 @endsection
 
 @section('js')
+    <script>
+        var inputTag = 'input_tag';
+    </script>
     <script src="{{ asset('js/checkbox-input.js') }}"></script>
 @endsection

@@ -44,4 +44,9 @@ class Article extends Model
     {
         return $this->attributes['active'] ? 'true' : 'false';
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class, 'article_id', 'id');
+    }
 }
